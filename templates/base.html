@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+</head>
+
+<body>
+    <div style="margin: 10px; display: flex; justify-content: center;" class="ui container">
+        <div style="width: 200%; background-color: rgb(250, 245, 251);" class="ui card">
+            <div class="content">
+                <h1 style="text-align: center; color:rgb(155, 115, 194)">To Do App</h1>
+            </div>
+            <div class="image">
+                <img src="https://i.pinimg.com/originals/df/2d/61/df2d61f085c0cc9d748a3c333e0570f2.gif">
+            </div>
+            <div class="content">
+                <form action="/add" method="post">
+                    <h2 style="color:rgb(155, 115, 194)">Todo Title</h2>
+                    <div class="ui fluid right labeled input">
+                        <input type="text" name="title" placeholder="Enter Todo...">
+                        <button class="ui violet tag label" type="submit">Add</button>
+                      </div>
+                    
+
+                </form>
+                <br>
+                <hr>
+                <div class="description">
+                    {% for todo in todo_list %}
+                    <div class="ui segment">
+                        <label class="ui violet circular label">{{todo.id }}</label>
+                        <label>&nbsp;</label>
+                        <label style="font-size: large;">{{ todo.title }}</label>
+
+                        <br><br>
+                        {% if todo.complete == False %}
+                        <span class="ui button">Not Complete</span>
+                        {% else %}
+                        <span class="ui positive button">Completed</span>
+                        {% endif %}
+                        <br><br>
+                        <a class="ui blue button" href="/update/{{ todo.id }}">Update</a>
+                        <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="extra content">
+                <span class="right floated">
+                    2022
+                </span>
+                <span>
+                    <i class="user icon"></i>
+                    SWtheWhite
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
